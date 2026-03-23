@@ -1,0 +1,10 @@
+v 4
+file . "sex.vhdl" "76f19f240e983c6e3350ba3ab394e1e939c7a353" "20260323024847.815":
+  entity base60_fsm at 1( 0) + 0 on 51;
+  architecture rtl of base60_fsm at 17( 668) + 0 on 52;
+file . "tb_sex.vhdl" "a5645781a5161f9362459be30f04d6c1ac8e1355" "20260323015707.973":
+  entity tb_sex at 3( 154) + 0 on 27;
+  architecture sim of tb_sex at 10( 261) + 0 on 28;
+file . "tb_sex_glyph.vhdl" "26327a9d61640197450dbb6afffa3b4a97c6f0f0" "20260323024847.905":
+  entity tb_sex_glyph at 2( 85) + 0 on 53;
+  architecture sim of tb_sex_glyph at 9( 204) + 0 on 54;

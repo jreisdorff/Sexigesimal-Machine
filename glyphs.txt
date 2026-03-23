@@ -1,0 +1,83 @@
+# SexCPU VCD glyphs (GHDL tb_sex dump codes)
+# Timescale in VCD: 1 fs; each script line starting with '!' = one rising_edge(clk).
+
+## Identifier map (from $var in tb_sex.vcd)
+id  hierarchical signal              tb drives?
+!   tb_sex.clk                        no — clock is concurrent; '!' marks a cycle step
+"   tb_sex.rst                         yes
+#   tb_sex.clr_i                       yes
+$   tb_sex.run_i                       yes
+%   tb_sex.inc_i                       yes
+&   tb_sex.digit_o[5:0]               no (DUT out)
+'   tb_sex.wrap_o                      no (DUT out)
+(   tb_sex.dut.clk_i                  no (alias of clk)
+)   tb_sex.dut.rst_i                  no
+*   tb_sex.dut.clr_i                  no
++   tb_sex.dut.run_i                  no
+,   tb_sex.dut.inc_i                  no
+-   tb_sex.dut.digit_o[5:0]           no
+.   tb_sex.dut.wrap_o                 no
+/   tb_sex.dut.digit_r[5:0]           no
+0   tb_sex.dut.digit_x[5:0]           no (id is digit zero)
+1   tb_sex.dut.wrap_x                 no
+2   tb_sex.dut.wrap_r                 no
+
+## Shorthand rules (glyph_script.txt)
+- Lines starting with '"' are header / initial dump — skipped by the generator.
+- '!' starts a cycle: apply tail tokens, then wait until rising_edge(clk).
+- 'C' in tail: no stim change this cycle (clock-only beat).
+- Bare # $ % " : force that stim to '1'.
+- Pair 0x or 1x with x in {#,$,%,"}: set that stim to 0 or 1.
+- 'b01010<id>' vector tokens are ignored for driving (DUT internal / bus dump).
+
+## glyph_script.txt → parsed deltas (before each clock edge)
+step  1  !0%&(-/
+         → inc_i<=0
+step  2  !C
+         → (hold)
+step  3  !C
+         → (hold)
+step  4  !C
+         → (hold)
+step  5  !$(+
+         → run_i<=1
+step  6  !(
+         → (hold)
+step  7  !%(,0
+         → inc_i<=1
+step  8  !0%&(-/
+         → inc_i<=0
+step  9  !(
+         → (hold)
+step 10  !%(,
+         → inc_i<=1
+step 11  !0%&(-/
+         → inc_i<=0
+step 12  !(
+         → (hold)
+step 13  !%(,0
+         → inc_i<=1
+step 14  !0%&(-/
+         → inc_i<=0
+step 15  !(
+         → (hold)
+step 16  !(
+         → (hold)
+step 17  !0$(
+         → run_i<=0
+step 18  !#(*
+         → clr_i<=1
+step 19  !0#(
+         → clr_i<=0
+step 20  !0%&(-/
+         → inc_i<=0
+step 21  !(
+         → (hold)
+step 22  !(
+         → (hold)
+step 23  !(
+         → (hold)
+step 24  !(
+         → (hold)
+step 25  !(
+         → (hold)
