@@ -2,6 +2,21 @@
 
 VHDL simulation of a **base-60 (sexagesimal) counter FSM** plus tooling to drive it from either a procedural testbench, a VCD-style glyph script, or to inspect wave dumps.
 
+## In plain English
+
+Imagine a **single digit on a digital clock** that only goes from **0 up to 59**, then rolls back to 0 (like seconds or minutes). This project builds that behavior as a **simulated chip** on your computer: it does not ship a physical circuit; **GHDL** runs a virtual copy so you can see the numbers change without soldering anything.
+
+You control that digit with simple ideas anyone would recognize:
+
+- **Run / pause:** counting only happens while it is “running.”
+- **Tick:** each tick adds one (when it is running).
+- **Clear:** snap the digit back to zero.
+- **Reset:** power-on style restart of the whole block.
+
+When the digit goes from **59 to 0**, the design can raise a short **“I just wrapped”** flag for one instant—useful if you later chain digits (tens of seconds, etc.).
+
+The **testbenches** are automated scripts that press those abstract buttons in a fixed order and print what the digit read at each step. One testbench pretends a **tiny program wrote bytes to a special memory address** (how a real CPU might turn a peripheral on or off). Another path uses a **shorthand script** (`glyph_script.txt`) that gets turned into VHDL by a small Python program. A third helper **reads a waveform log** (`.vcd`) and writes it out as plain text so you can scroll the timeline without a scope UI.
+
 ## Hardware core (`sex.vhdl`)
 
 The file `sex.vhdl` implements the entity **`base60_fsm`**:
