@@ -5,4 +5,7 @@ SECTIONS
 {
   . = 0x40000000;
   .text : { *(.text) }
+  . = ALIGN(8);
+  ctrl_port = .;
+  . += 8;
 }
