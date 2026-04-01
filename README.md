@@ -1,4 +1,4 @@
-# SexCPU
+# Sex Machine
 
 VHDL simulation of a **base-60 (sexagesimal) counter FSM** plus tooling to drive it from either a procedural testbench, a VCD-style glyph script, or to inspect wave dumps.
 
